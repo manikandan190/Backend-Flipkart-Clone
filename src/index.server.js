@@ -43,6 +43,6 @@ app.use('/api',address);
 app.use('/api',orderRoutes);
 app.use('/api',adminOrderRoute);
 
-app.listen(2000,()=>{
+app.listen(process.env.PORT||5000,()=>{
     console.log(`server is running on port 2000`);
 });
