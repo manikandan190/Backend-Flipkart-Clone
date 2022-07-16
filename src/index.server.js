@@ -17,12 +17,12 @@ const orderRoutes=require('./routes/order')
 const adminOrderRoute=require('./routes/admin/order.routes');
 
 env.config();
-//mongodb+srv://manikandan:@cluster0.ag6tc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+//mongodb+srv://manikandan:<password>@cluster0.ag6tc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 app.use(bodyParser());
 mongoose
   .connect(
-    `mongodb+srv://manikandan:manikandan@cluster0.ag6tc.mongodb.net/ecommerce?retryWrites=true&w=majority`,
+    `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.ag6tc.mongodb.net/${process.env.MONGO_DB_DATABASE}?retryWrites=true&w=majority`,
     
   
   )
@@ -43,6 +43,6 @@ app.use('/api',address);
 app.use('/api',orderRoutes);
 app.use('/api',adminOrderRoute);
 
-app.listen(2000,()=>{
-    console.log(`server is running on port 2000`);
+app.listen(process.env.PORT,()=>{
+    console.log(`server is running on port ${process.env.PORT}`);
 });
