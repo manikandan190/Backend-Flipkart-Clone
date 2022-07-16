@@ -47,13 +47,15 @@ exports.signin=(req,res)=>{
     User.findOne({email:req.body.email})
     .exec(async(error,user)=>{
             if(error) return res.status(400).json({error});
-            const ispassword=await user.authenticate(req.body.password);
-            if(user)
+            const ispassword=req.body.password;
+            if(user )
             {
-            if(ispassword&&user.role==='admin')
+            if(user.role==='admin')
             {
                 const token=jwt.sign({_id:user._id,role:user.role},process.env.JWT_SECRET,{expiresIn:'2d'});
-                const {firstName,lastName,email,role,fullName}=user;
+                const {firstName,lastName,email,role,fullName,password}=user;
+                if(ispassword===password)
+                {
                 res.status(200).json({
                     token,
                     user:{
@@ -66,6 +68,8 @@ exports.signin=(req,res)=>{
                     message:'Something went wrong'
                 })
             }
+            }
+           
         }
         else{
             return res.status(400).json({
