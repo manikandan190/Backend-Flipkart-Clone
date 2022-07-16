@@ -46,4 +46,3 @@ app.use('/api',adminOrderRoute);
 app.listen(2000,()=>{
     console.log(`server is running on port 2000`);
 });
-hello
