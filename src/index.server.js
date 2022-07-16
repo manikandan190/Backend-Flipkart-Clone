@@ -22,7 +22,7 @@ env.config();
 app.use(bodyParser());
 mongoose
   .connect(
-    `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@cluster0.ag6tc.mongodb.net/${process.env.MONGO_DB_DATABASE}?retryWrites=true&w=majority`,
+    `mongodb+srv://manikandan:manikandan@cluster0.ag6tc.mongodb.net/ecommerce?retryWrites=true&w=majority`,
     
   
   )
